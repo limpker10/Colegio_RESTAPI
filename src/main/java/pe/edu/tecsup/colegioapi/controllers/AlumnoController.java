@@ -18,13 +18,13 @@ import pe.edu.tecsup.colegioapi.entities.Alumno;
 import pe.edu.tecsup.colegioapi.services.AlumnoService;
 
 @RestController
-@RequestMapping("/api/alumnos")
+@RequestMapping("/api")
 public class AlumnoController {
 
     @Autowired
     private AlumnoService alumnoService;
 
-    @GetMapping
+    @GetMapping("/alumnos")
     public ResponseEntity<List<Alumno>> obtenerAlumnos() {
         try {
             List<Alumno> alumnos = alumnoService.getAll();
@@ -37,7 +37,7 @@ public class AlumnoController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/alumnos/{id}")
     public ResponseEntity<Alumno> obtenerAlumnoPorId(@PathVariable Long id) {
         try {
             Alumno alumno = alumnoService.findById(id);
@@ -61,7 +61,7 @@ public class AlumnoController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/alumnos/{id}")
     public ResponseEntity<Alumno> actualizarAlumno(@PathVariable Long id, @RequestBody Alumno alumno) {
         try {
             Alumno alumnoActualizado = alumnoService.update(id, alumno);
@@ -75,7 +75,7 @@ public class AlumnoController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/alumnos/{id}")
     public ResponseEntity<String> eliminarAlumno(@PathVariable Long id) {
         try {
             alumnoService.deleteById(id);
